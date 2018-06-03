@@ -22,4 +22,4 @@ How to run
 
 Results
 -------
-![](Epsilon-Greedy Algorithm.png?raw=true)
+![](Epsilon-Greedy%20Algorithm.png?raw=true)
