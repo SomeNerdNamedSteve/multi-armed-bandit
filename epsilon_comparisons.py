@@ -4,12 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # The following function uses
-def test_greedy(epsilon):
+def test_greedy(epsilon, num_iterations):
     # Problem setup
-    max_num_bandits = 101
-    num_bandits = np.random.randint(1,max_num_bandits) # set number of bandits
-    num_iterations = np.random.randint(10000, 1000000) # set number of iterations
-    m_vals = [np.random.randint(1, max_num_bandits) for _ in range(num_bandits)] # create True Mean values
+    num_bandits = 5 # set number of bandits
+    m_vals = [np.random.randint(30,41) for _ in range(num_bandits)] # create True Mean values
     bandits = [Bandit(m=i) for i in m_vals] # create bandits
     data = np.empty(num_iterations) # create an empty array for output data
 
@@ -32,15 +30,12 @@ def test_greedy(epsilon):
 
 if __name__ == '__main__':
     np.random.seed(seed_val) # seed value set
-
-    epsilons = [0.01, 0.05, 0.1]
+    num_iterations = np.random.randint(100000, 1000000) # set number of iterations
+    epsilons = [0.01, 0.05, 0.1, 0.25]
 
     for epsilon in epsilons:
-        curr_results = test_greedy(epsilon=epsilon)
-        plt.plot(curr_results, label='epsilon = {0}'.format(epsilon))
-    
-    # greedy_epsilon_10_percent = test_greedy(epsilon=0.1)
-    # plt.plot(greedy_epsilon_10_percent, label='epsilon = %s' % (epsilon))    
+        curr_results = test_greedy(epsilon=epsilon, num_iterations=num_iterations)
+        plt.plot(curr_results, label='epsilon = {0}'.format(epsilon))    
     
     plt.legend()
     plt.xscale('log')
